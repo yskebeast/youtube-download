@@ -2,14 +2,14 @@
   "name": "youtube-download",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
-  "devDependencies": {},
+  "main": "src/main.mjs",
   "scripts": {
-    "dev": "node main"
-  },
-  "dependencies": {
-    "youtube-dl-exec": "^3.0.9"
+    "dev": "node src/main.mjs > output.log"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.14.4",
+    "nodemon": "^3.1.7"
+  }
 }
