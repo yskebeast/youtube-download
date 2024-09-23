@@ -4,12 +4,13 @@
   "description": "",
   "main": "src/main.mjs",
   "scripts": {
-    "dev": "node src/main.mjs > output.log"
+    "dev": "node --env-file=.env  src/main.mjs > output.log"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@distube/ytdl-core": "^4.14.4",
+    "googleapis": "^144.0.0",
     "nodemon": "^3.1.7"
   }
 }
