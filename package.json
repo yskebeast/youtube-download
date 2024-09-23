@@ -1,0 +1,15 @@
+{
+  "name": "youtube-download",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "node main"
+  },
+  "dependencies": {
+    "youtube-dl-exec": "^3.0.9"
+  },
+  "author": "",
+  "license": "ISC"
+}
