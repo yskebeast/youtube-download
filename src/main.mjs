@@ -3,10 +3,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 import ytdl from "@distube/ytdl-core";
 
-import { checkOutputFolder } from "./checkOutputFolder.js";
+import { checkOutputFolder } from "./checkOutputDir.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const outputFolder = path.join(__dirname, "output");
+const outputFolder = path.join(__dirname, "../output");
 
 const main = async () => {
   try {
