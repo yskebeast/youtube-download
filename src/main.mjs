@@ -13,9 +13,9 @@ const main = async () => {
   // * check if the output folder exists, if not, create it
   checkOutputFolder(outputFolder);
 
-  const videoIds = await youtubePlaylist();
-  const videoList = videoIds.map(async (videoId) => {
-    const video = `https://www.youtube.com/watch?v=${videoId}`;
+  const getYouTubePlaylist = await youtubePlaylist();
+  const videoList = getYouTubePlaylist.map(async (videoData) => {
+    const video = `https://www.youtube.com/watch?v=${videoData.videoId}`;
     const info = await ytdl.getInfo(video);
     const format = ytdl.chooseFormat(info.formats, {
       quality: "18",
@@ -25,7 +25,7 @@ const main = async () => {
 
     const filePath = path.join(
       outputFolder,
-      `${info.videoDetails.title}-${videoId}.${format.container}`
+      `${videoData.date}-${videoData.videoId}.${format.container}`
     );
     const outputStream = fs.createWriteStream(filePath);
     ytdl.downloadFromInfo(info, { format: format }).pipe(outputStream);
