@@ -4,12 +4,14 @@
   "description": "",
   "main": "src/main.mjs",
   "scripts": {
-    "dev": "node --env-file=.env  src/main.mjs > output.log"
+    "dev": "node --env-file=.env  src/main.mjs > output.log",
+    "yt": "node --env-file=.env  src/youtubePlaylist.mjs > output.log"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@distube/ytdl-core": "^4.14.4",
+    "glob": "^11.0.0",
     "googleapis": "^144.0.0",
     "nodemon": "^3.1.7"
   }

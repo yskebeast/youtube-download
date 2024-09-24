@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import ytdl from "@distube/ytdl-core";
 
+import { checkExcel } from "./checkExcel.mjs";
 import { checkOutputFolder } from "./checkOutputDir.mjs";
 import { youtubePlaylist } from "./youtubePlaylist.mjs";
 
@@ -10,6 +11,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outputFolder = path.join(__dirname, "../output");
 
 const main = async () => {
+  // * check if the excel folder and file exists, if not, throw an error
+  await checkExcel();
+
   // * check if the output folder exists, if not, create it
   checkOutputFolder(outputFolder);
 
