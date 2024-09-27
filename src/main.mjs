@@ -56,7 +56,7 @@ const main = async () => {
       console.error("An error occurred:", error);
     }
 
-    await writeDownloadedId(videoData.videoId);
+    await writeDownloadedId(videoData);
   });
 
   await Promise.all(videoList);
