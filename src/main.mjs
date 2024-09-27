@@ -3,7 +3,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import ytdl from "@distube/ytdl-core";
 
-import { checkExcel } from "./checkExcel.mjs";
+import {
+  checkExcelDirectory,
+  readExcelContent,
+  writeDownloadedId,
+} from "./manageExcel.mjs";
 import { checkOutputFolder } from "./checkOutputDir.mjs";
 import { youtubePlaylist } from "./youtubePlaylist.mjs";
 
@@ -12,13 +16,20 @@ const outputFolder = path.join(__dirname, "../output");
 
 const main = async () => {
   // * check if the excel folder and file exists, if not, throw an error
-  await checkExcel();
+  await checkExcelDirectory();
 
   // * check if the output folder exists, if not, create it
   checkOutputFolder(outputFolder);
 
+  const readExcel = (await readExcelContent()).slice(1).map((data) => data[0]);
   const getYouTubePlaylist = await youtubePlaylist();
+
   const videoList = getYouTubePlaylist.map(async (videoData) => {
+    if (readExcel.includes(videoData.videoId)) {
+      console.log("Already downloaded: ", videoData.videoId);
+      return;
+    }
+
     const video = `https://www.youtube.com/watch?v=${videoData.videoId}`;
     const info = await ytdl.getInfo(video);
     const format = ytdl.chooseFormat(info.formats, {
@@ -44,6 +55,8 @@ const main = async () => {
     } catch (error) {
       console.error("An error occurred:", error);
     }
+
+    await writeDownloadedId(videoData.videoId);
   });
 
   await Promise.all(videoList);

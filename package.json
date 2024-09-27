@@ -5,7 +5,7 @@
   "main": "src/main.mjs",
   "scripts": {
     "dev": "node --env-file=.env  src/main.mjs > output.log",
-    "yt": "node --env-file=.env  src/youtubePlaylist.mjs > output.log"
+    "yt": "node --env-file=.env  src/checkExcel.mjs > output.log"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "@distube/ytdl-core": "^4.14.4",
     "glob": "^11.0.0",
     "googleapis": "^144.0.0",
-    "nodemon": "^3.1.7"
+    "read-excel-file": "^5.8.5",
+    "write-excel-file": "^2.0.10"
   }
 }

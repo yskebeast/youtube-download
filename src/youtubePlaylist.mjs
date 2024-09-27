@@ -35,7 +35,8 @@ export const youtubePlaylist = async () => {
   const res = await searchYoutube(process.env["YOUTUBE_CHANNEL_ID"] ?? "");
   const videoIds = res.map((video) => {
     const videoId = video.id.videoId;
-    const date = video.snippet.publishTime.match(/(\d{4}-\d{2}-\d{2})/g);
+    const dateRegex = /(\d{4}-\d{2}-\d{2})/g;
+    const date = video.snippet.publishTime.match(dateRegex);
     return {
       videoId,
       date: date[0],
